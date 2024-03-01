@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Random Redirect</title>
+</head>
+<body>
+<script>
+// Function to get URL parameters
+function getUrlParameter(name) {
+  name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+  var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+  var results = regex.exec(location.search);
+  return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+};
+
+// Get the URLs from URL parameters
+var url1 = getUrlParameter('url1');
+var url2 = getUrlParameter('url2');
+
+// Check if both URLs are provided
+if (url1 && url2) {
+  // Array of URLs to redirect to
+  var urls = [url1, url2];
+
+  // Select a random URL from the array
+  var randomIndex = Math.floor(Math.random() * urls.length);
+  var randomUrl = urls[randomIndex];
+
+  // Redirect the user to the random URL
+  window.location.href = randomUrl;
+} else {
+  console.error('Please provide both URL parameters.');
+}
+</script>
+</body>
+</html>
